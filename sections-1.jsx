@@ -45,7 +45,7 @@ function S01_Hook({ motion }) {
               dead last in the G20 on density (7 vs Korea's 1,012). That gap is the entire opportunity.
               This is a memo about how to enter the industry, ship profitable boring SKUs, and use the
               cashflow to fund the R&amp;D that compounds. Compiled from IFR data, founder interviews,
-              factory visits in Peenya and Bommasandra, MCA filings, and a year of obsessive reading.
+              and obsessive reading.
               Built to be argued with.
             </p>
           </Reveal>
@@ -568,11 +568,11 @@ function S03_Consumer({ motion }) {
             sub="6 videos · so we know exactly what we revisit at month 18"
             items={[
               { label: 'Roborock Saros 10R - auto-empty + mop wash demo', source: 'YouTube · Vacuum Wars', url: 'https://www.youtube.com/watch?v=ksaSXJjW7nA' },
-              { label: 'Mammotion LUBA 2 AWD - wire-free RTK lawn robot', source: 'YouTube · Robots and Cars' },
-              { label: 'Whisker Litter-Robot 4 - the cat-litter moat', source: 'YouTube · The Verge' },
-              { label: 'Aiper Scuba S1 Pro - pool robot taking Maytronics share', source: 'YouTube · Aiper' },
-              { label: 'Dreame X40 Ultra - auto-fill / auto-empty + hot water mop', source: 'YouTube · Vacuum Wars' },
-              { label: 'Eufy Robovac - Anker hardware playbook', source: 'YouTube · Anker' }
+              { label: 'Mammotion LUBA 2 AWD - wire-free RTK lawn robot', source: 'YouTube · EasyLawnMowing', url: 'https://www.youtube.com/watch?v=Ivw9qUdSK3g' },
+              { label: 'Whisker Litter-Robot 4 - the cat-litter moat', source: 'YouTube · Whisker', url: 'https://www.youtube.com/watch?v=XSC4_8myD2k' },
+              { label: 'Aiper Scuba S1 Pro - pool robot taking Maytronics share', source: 'YouTube · Aiper', url: 'https://www.youtube.com/watch?v=S96qnUWypwo' },
+              { label: 'Dreame X40 Ultra - auto-fill / auto-empty + hot water mop', source: 'YouTube · Vacuum Wars', url: 'https://www.youtube.com/watch?v=S6tcM1U9f8s' },
+              { label: 'Eufy S1 Pro - Anker top-tier robovac', source: 'YouTube · Anker', url: 'https://www.youtube.com/watch?v=gxGNC_bXwZs' }
             ]}/>
         </Reveal>
 
@@ -1225,7 +1225,7 @@ function S05_Humanoids({ motion }) {
               { label: 'Unitree H1 - humanoid breaks 22.4 MPH', source: 'YouTube', url: 'https://www.youtube.com/watch?v=sfcqAZcWoMo' },
               { label: 'Tesla Optimus Gen 3 - running, new demo', source: 'YouTube', url: 'https://www.youtube.com/watch?v=ea6QaTrgx3w' },
               { label: 'Optimus Gen 3 - $20K humanoid unveil', source: 'YouTube', url: 'https://www.youtube.com/watch?v=GCohnewzaCQ' },
-              { label: '1X NEO - home demo, raw cut', source: 'YouTube · 1X Technologies' }
+              { label: '1X NEO - $20K home humanoid first look', source: 'YouTube · 1X Technologies', url: 'https://www.youtube.com/watch?v=EtU-uCWQcng' }
             ]}/>
         </Reveal>
 

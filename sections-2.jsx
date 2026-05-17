@@ -1989,14 +1989,14 @@ function S13_Bet({ motion }) {
             <div className="kicker" style={{ color: 'var(--accent)' }}>For Aayush</div>
             <p className="serif" style={{ fontSize: 28, color: 'var(--ink)', lineHeight: 1.3, letterSpacing: '-0.015em', marginTop: 18, maxWidth: 1000 }}>
               You are right that the product is not the moat. You are right that distribution is the moat.
-              Where I think we disagree is on what distribution looks like in robotics. In an app, it is
+              I think the distribution in robotics is more hard. In an app, it is
               ads + retail. In a factory, it is the cobot already wired into the line - and that wiring
               is service, integration, and uptime, three things <em style={{ color: 'var(--accent)' }}>India has zero local champion for
               today</em>. That is the gap I want to spend the next ten years closing. Not as a consumer
               brand. Not as humanoids. As the boring, profitable infrastructure underneath India's
               manufacturing decade. Read this. Argue with it. Then let's go to ARTPARK.
             </p>
-            <div className="meta" style={{ marginTop: 28, color: 'var(--ink-mid)' }}>- Abhay</div>
+            <div className="meta" style={{ marginTop: 28, color: 'var(--ink-mid)' }}>- Ubhay</div>
           </div>
         </Reveal>
 

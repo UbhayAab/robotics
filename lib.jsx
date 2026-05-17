@@ -366,34 +366,37 @@ function VideoStudy({ url, title, channel, summary, takeaways = [], source, aspe
 
 /* ---------- FinancialsTable: clean financial data table ---------- */
 function FinancialsTable({ cols, rows, caption, footnote }) {
+  const minW = Math.max(560, cols.length * 110);
   return (
     <div className="fin-table" style={{ margin: '20px 0' }}>
       {caption && <div className="kicker" style={{ marginBottom: 10, color: 'var(--accent)' }}>{caption}</div>}
-      <div style={{ border: '1px solid var(--rule)', borderRadius: 4, overflow: 'hidden', background: 'var(--paper-2, var(--paper))' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: cols.map(c => c.w || '1fr').join(' '),
-                      padding: '12px 16px', background: 'var(--ink)', color: 'var(--bg)',
-                      fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', gap: 12 }}>
-          {cols.map((c, i) => <div key={i} style={{ textAlign: c.align || 'left' }}>{c.label}</div>)}
-        </div>
-        {rows.map((r, ri) => (
-          <div key={ri}
-               style={{ display: 'grid', gridTemplateColumns: cols.map(c => c.w || '1fr').join(' '),
-                        padding: '14px 16px', borderTop: ri > 0 ? '1px solid var(--rule)' : 'none',
-                        fontSize: 13, color: 'var(--ink-mid)', gap: 12, alignItems: 'baseline' }}>
-            {cols.map((c, ci) => {
-              const v = r[c.key];
-              const isAccent = c.accent && (ri === 0 || c.alwaysAccent);
-              return (
-                <div key={ci} style={{
-                  textAlign: c.align || 'left',
-                  fontFamily: c.numeric ? 'var(--f-mono)' : 'inherit',
-                  color: c.highlight && r._highlight ? 'var(--accent)' : isAccent ? 'var(--accent)' : c.muted ? 'var(--ink-low)' : 'inherit',
-                  fontWeight: c.bold ? 600 : 400
-                }}>{v}</div>
-              );
-            })}
+      <div className="fin-scroll" style={{ border: '1px solid var(--rule)', borderRadius: 4, overflowX: 'auto', WebkitOverflowScrolling: 'touch', background: 'var(--paper-2, var(--paper))' }}>
+        <div className="fin-inner" style={{ minWidth: minW }}>
+          <div style={{ display: 'grid', gridTemplateColumns: cols.map(c => c.w || '1fr').join(' '),
+                        padding: '12px 16px', background: 'var(--ink)', color: 'var(--bg)',
+                        fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', gap: 12 }}>
+            {cols.map((c, i) => <div key={i} style={{ textAlign: c.align || 'left' }}>{c.label}</div>)}
           </div>
-        ))}
+          {rows.map((r, ri) => (
+            <div key={ri}
+                 style={{ display: 'grid', gridTemplateColumns: cols.map(c => c.w || '1fr').join(' '),
+                          padding: '14px 16px', borderTop: ri > 0 ? '1px solid var(--rule)' : 'none',
+                          fontSize: 13, color: 'var(--ink-mid)', gap: 12, alignItems: 'baseline' }}>
+              {cols.map((c, ci) => {
+                const v = r[c.key];
+                const isAccent = c.accent && (ri === 0 || c.alwaysAccent);
+                return (
+                  <div key={ci} style={{
+                    textAlign: c.align || 'left',
+                    fontFamily: c.numeric ? 'var(--f-mono)' : 'inherit',
+                    color: c.highlight && r._highlight ? 'var(--accent)' : isAccent ? 'var(--accent)' : c.muted ? 'var(--ink-low)' : 'inherit',
+                    fontWeight: c.bold ? 600 : 400
+                  }}>{v}</div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
       </div>
       {footnote && <div className="meta" style={{ marginTop: 8, fontStyle: 'italic' }}>{footnote}</div>}
     </div>
@@ -448,25 +451,29 @@ function BOMBreakdown({ title, items, total, unit = '$', footnote }) {
 /* ---------- WedgeRanker: ranked-list table for opportunity wedges ---------- */
 function WedgeRanker({ rows }) {
   return (
-    <div style={{ margin: '24px 0' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '36px 2fr 1.2fr 1fr 0.9fr 0.9fr 1.4fr', gap: 12,
-                    padding: '10px 14px', background: 'var(--ink)', color: 'var(--bg)',
-                    fontFamily: 'var(--f-mono)', fontSize: 10, letterSpacing: '.08em', textTransform: 'uppercase' }}>
-        <div>#</div><div>Wedge</div><div>India TAM (5-yr)</div><div>BOM</div><div>ASP</div><div>Difficulty</div><div>Verdict</div>
-      </div>
-      {rows.map((r, i) => (
-        <div key={i} style={{ display: 'grid', gridTemplateColumns: '36px 2fr 1.2fr 1fr 0.9fr 0.9fr 1.4fr', gap: 12,
-                              padding: '14px', borderBottom: '1px solid var(--rule)', fontSize: 13, alignItems: 'baseline',
-                              background: r.recommended ? 'var(--accent-soft)' : 'transparent' }}>
-          <div style={{ fontFamily: 'var(--f-mono)', color: 'var(--accent)', fontWeight: 600 }}>{String(i+1).padStart(2,'0')}</div>
-          <div style={{ color: 'var(--ink)' }}>{r.wedge}{r.recommended && <span className="meta" style={{ color: 'var(--accent)', marginLeft: 8 }}>★ pick</span>}</div>
-          <div style={{ fontFamily: 'var(--f-mono)', color: 'var(--ink-mid)' }}>{r.tam}</div>
-          <div style={{ fontFamily: 'var(--f-mono)', color: 'var(--ink-mid)' }}>{r.bom}</div>
-          <div style={{ fontFamily: 'var(--f-mono)', color: 'var(--ink-mid)' }}>{r.retail}</div>
-          <div style={{ fontFamily: 'var(--f-mono)', color: r.difficulty === 'High' ? 'var(--neg)' : r.difficulty === 'Low' ? 'var(--pos)' : 'var(--ink-mid)' }}>{r.difficulty}</div>
-          <div style={{ color: 'var(--ink-mid)', fontSize: 12, lineHeight: 1.4 }}>{r.verdict}</div>
+    <div className="wedge-ranker" style={{ margin: '24px 0' }}>
+      <div className="wedge-scroll" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', border: '1px solid var(--rule)' }}>
+        <div className="wedge-inner" style={{ minWidth: 820 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '36px 2fr 1.2fr 1fr 0.9fr 0.9fr 1.4fr', gap: 12,
+                        padding: '10px 14px', background: 'var(--ink)', color: 'var(--bg)',
+                        fontFamily: 'var(--f-mono)', fontSize: 10, letterSpacing: '.08em', textTransform: 'uppercase' }}>
+            <div>#</div><div>Wedge</div><div>India TAM (5-yr)</div><div>BOM</div><div>ASP</div><div>Difficulty</div><div>Verdict</div>
+          </div>
+          {rows.map((r, i) => (
+            <div key={i} style={{ display: 'grid', gridTemplateColumns: '36px 2fr 1.2fr 1fr 0.9fr 0.9fr 1.4fr', gap: 12,
+                                  padding: '14px', borderTop: '1px solid var(--rule)', fontSize: 13, alignItems: 'baseline',
+                                  background: r.recommended ? 'var(--accent-soft)' : 'transparent' }}>
+              <div style={{ fontFamily: 'var(--f-mono)', color: 'var(--accent)', fontWeight: 600 }}>{String(i+1).padStart(2,'0')}</div>
+              <div style={{ color: 'var(--ink)' }}>{r.wedge}{r.recommended && <span className="meta" style={{ color: 'var(--accent)', marginLeft: 8 }}>★ pick</span>}</div>
+              <div style={{ fontFamily: 'var(--f-mono)', color: 'var(--ink-mid)' }}>{r.tam}</div>
+              <div style={{ fontFamily: 'var(--f-mono)', color: 'var(--ink-mid)' }}>{r.bom}</div>
+              <div style={{ fontFamily: 'var(--f-mono)', color: 'var(--ink-mid)' }}>{r.retail}</div>
+              <div style={{ fontFamily: 'var(--f-mono)', color: r.difficulty === 'High' ? 'var(--neg)' : r.difficulty === 'Low' ? 'var(--pos)' : 'var(--ink-mid)' }}>{r.difficulty}</div>
+              <div style={{ color: 'var(--ink-mid)', fontSize: 12, lineHeight: 1.4 }}>{r.verdict}</div>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 }

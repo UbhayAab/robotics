@@ -451,8 +451,22 @@ section[data-section] { position: relative; }
 /* ===========================================================
    TABLES - horizontal scroll wrapper
    =========================================================== */
-.table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; position: relative; }
 .table-scroll table { min-width: 640px; }
+
+/* Universal scroll-wrapper helpers used by FinancialsTable + WedgeRanker */
+.fin-scroll, .wedge-scroll, .table-scroll, .h-compare-wrap {
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) transparent;
+}
+.fin-scroll::-webkit-scrollbar,
+.wedge-scroll::-webkit-scrollbar,
+.table-scroll::-webkit-scrollbar,
+.h-compare-wrap::-webkit-scrollbar { height: 6px; }
+.fin-scroll::-webkit-scrollbar-thumb,
+.wedge-scroll::-webkit-scrollbar-thumb,
+.table-scroll::-webkit-scrollbar-thumb,
+.h-compare-wrap::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
 
 /* ===========================================================
    MOBILE - comprehensive responsive overrides
@@ -548,7 +562,7 @@ section[data-section] { position: relative; }
   .panel.flush table { min-width: 640px; }
 
   /* Humanoid compare horizontal scroll */
-  .h-compare-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .h-compare-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; position: relative; }
   .h-compare-wrap > div { min-width: 640px; }
 
   /* Panels: tighter padding */
@@ -617,16 +631,30 @@ section[data-section] { position: relative; }
     position: relative !important; height: auto !important;
   }
 
-  /* FinancialsTable - horizontally scrollable wrapper on mobile */
-  .fin-table > div {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-  }
-  .fin-table > div > div {
-    min-width: 600px !important;
-  }
-  /* Small text in tables doesn't get tinier than 11px */
+  /* FinancialsTable - small font on mobile, scroll handled by .fin-scroll wrapper */
   .fin-table { font-size: 12px !important; }
+  .fin-scroll { position: relative; }
+  /* swipe hint pill on the scrollable wrapper */
+  .fin-scroll::after,
+  .wedge-scroll::after,
+  .table-scroll::after,
+  .h-compare-wrap::after {
+    content: 'swipe →';
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    z-index: 2;
+    font-family: var(--f-mono);
+    font-size: 9px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    background: var(--paper);
+    padding: 2px 6px;
+    border: 1px solid var(--accent);
+    pointer-events: none;
+    opacity: 0.9;
+  }
 
   /* BOMBreakdown - stack the column structure differently on mobile */
   .bom > div[style*="grid-template-columns: 14px 1fr auto auto"] {
@@ -637,15 +665,7 @@ section[data-section] { position: relative; }
     display: none !important; /* hide the % column on mobile - keep label + $ */
   }
 
-  /* WedgeRanker - horizontally scrollable */
-  div[style*="grid-template-columns: 36px 2fr 1.2fr 1fr 0.9fr 0.9fr 1.4fr"] {
-    min-width: 720px;
-  }
-  /* wrap the whole thing for scroll */
-  section[data-section="03"] > .page > div:has(> div[style*="36px 2fr"]) {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+  /* WedgeRanker - handled by .wedge-scroll wrapper inside the component */
 
   /* ColdCallScript - already stacks well, just tighten padding */
   div[style*="border-left: 3px solid var(--accent)"][style*="padding: 16px 18px"] {
