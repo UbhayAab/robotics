@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robotics Deep Dive — The $175B Opportunity</title>
+  <meta name="description" content="Comprehensive research into the global robotics industry: market data, funding landscape, technology shifts, India opportunity, vertical analysis, and actionable playbook.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="main-nav">
+    <div class="container nav-inner">
+      <div class="nav-logo"><span class="icon">⚡</span> <span class="gradient-text">RoboDeepDive</span></div>
+      <div class="nav-links" id="nav-links">
+        <a href="#shift">The Shift</a>
+        <a href="#market">Market</a>
+        <a href="#funding">Funding</a>
+        <a href="#india">India</a>
+        <a href="#verticals">Verticals</a>
+        <a href="#moats">Moats</a>
+        <a href="#cases">Cases</a>
+        <a href="#playbook">Playbook</a>
+      </div>
+      <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="container">
+      <div class="hero-content" data-aos="fade-up">
+        <div class="hero-badge"><span class="dot"></span> Research Report — May 2026</div>
+        <h1 class="hero-title">The Robotics <br><span class="gradient-text">Revolution is Now</span></h1>
+        <p class="hero-description">
+          A $62B+ industry at its GPT moment. Foundation models are separating intelligence from hardware.
+          India's automation density is 40x behind South Korea. The window to build is open.
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="value" data-count="62">0</div><div class="label">Billion $ Market (2025)</div></div>
+          <div class="hero-stat"><div class="value" data-count="542">0</div><div class="label">K Robots Installed (2024)</div></div>
+          <div class="hero-stat"><div class="value" data-count="27">0</div><div class="label">Billion $ VC (2025)</div></div>
+          <div class="hero-stat"><div class="value" data-count="40">0</div><div class="label">x India Density Gap</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Stats Bar -->
+  <section class="container">
+    <div class="stats-bar" data-aos="fade-up">
+      <div class="glass-card stat-card"><div class="stat-icon">🌐</div><div class="stat-value">$62B+</div><div class="stat-label">Global Market 2025</div></div>
+      <div class="glass-card stat-card"><div class="stat-icon">🤖</div><div class="stat-value">542K</div><div class="stat-label">Installed 2024</div></div>
+      <div class="glass-card stat-card"><div class="stat-icon">⚙️</div><div class="stat-value">4.66M</div><div class="stat-label">Operational Stock</div></div>
+      <div class="glass-card stat-card"><div class="stat-icon">💰</div><div class="stat-value">$27.6B</div><div class="stat-label">VC Investment 2025</div></div>
+      <div class="glass-card stat-card"><div class="stat-icon">📊</div><div class="stat-value">40x</div><div class="stat-label">India vs Korea Gap</div></div>
+      <div class="glass-card stat-card"><div class="stat-icon">🌱</div><div class="stat-value">22.8%</div><div class="stat-label">India AgriBot CAGR</div></div>
+    </div>
+  </section>
+
+  <!-- Section: The Shift -->
+  <section class="section" id="shift">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">01 — The Paradigm Shift</span>
+        <h2>Robotics is Having Its <span class="gradient-text">GPT Moment</span></h2>
+        <p class="section-subtitle">Vision-Language-Action models are separating the intelligence layer from hardware. The value is migrating from atoms to bits.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="grid-2" data-aos="fade-up" data-aos-delay="100">
+        <div>
+          <div class="glass-card" style="margin-bottom: 24px;">
+            <h3 style="margin-bottom: 16px;">Before VLAs (Pre-2023)</h3>
+            <ul class="vertical-list">
+              <li>Robots programmed task-by-task</li>
+              <li>Separate perception, planning, control modules</li>
+              <li>Months of engineering per new task</li>
+              <li>Zero generalization to new objects</li>
+              <li>$100K+ per deployment</li>
+            </ul>
+          </div>
+          <div class="glass-card" style="border-color: rgba(0,212,255,0.2);">
+            <h3 style="margin-bottom: 16px; color: var(--accent-cyan);">After VLAs (2024+)</h3>
+            <ul class="vertical-list">
+              <li>Single model: camera → language → motor commands</li>
+              <li>End-to-end learned from demonstrations</li>
+              <li>~1 hour of robot data per new task (GEN-1)</li>
+              <li>Compositional generalization to novel tasks (π0.7)</li>
+              <li>~99% success rate vs 64% prior</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="glass-card" style="height: 100%;">
+            <h3 style="margin-bottom: 20px;">Foundation Model Timeline</h3>
+            <table class="vla-table">
+              <thead><tr><th>Model</th><th>Creator</th><th>Year</th></tr></thead>
+              <tbody id="vla-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card" style="margin-top: 24px; text-align: center; padding: 24px;" data-aos="fade-up" data-aos-delay="200">
+        <p style="color: var(--text-secondary); font-size: 1rem;">
+          <strong style="color: var(--accent-cyan);">The Big Bet:</strong> Investment in world models surged from
+          <strong style="color: var(--accent-yellow);">€1.3B</strong> (2024) to
+          <strong style="color: var(--accent-green);">€6.5B</strong> (2025) — a
+          <strong class="gradient-text">5x increase</strong> in one year.
+          VLAs now power ~40% of new robot deployments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Market Data -->
+  <section class="section" id="market" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">02 — Market Intelligence</span>
+        <h2>The <span class="gradient-text">$175 Billion</span> Opportunity</h2>
+        <p class="section-subtitle">Global robotics is growing 7–20% CAGR. Consumer robotics at 30%. Cobots at 28%. The numbers are staggering.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="grid-2" data-aos="fade-up" data-aos-delay="100">
+        <div class="glass-card">
+          <h3 style="margin-bottom: 16px;">Global Robotics Market ($B)</h3>
+          <div class="chart-container"><canvas id="chart-market"></canvas></div>
+        </div>
+        <div class="glass-card">
+          <h3 style="margin-bottom: 16px;">Installations by Industry (2024)</h3>
+          <div class="chart-container"><canvas id="chart-industries"></canvas></div>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top: 24px;" data-aos="fade-up" data-aos-delay="200">
+        <div class="glass-card">
+          <h3 style="margin-bottom: 16px;">RaaS Market Growth ($B)</h3>
+          <div class="chart-container"><canvas id="chart-raas"></canvas></div>
+        </div>
+        <div class="glass-card">
+          <h3 style="margin-bottom: 16px;">Key Takeaways</h3>
+          <ul class="vertical-list">
+            <li><strong>Electronics overtook automotive</strong> as #1 customer industry</li>
+            <li><strong>Food & Beverage surging +42%</strong> — fastest growing sector</li>
+            <li><strong>RaaS eliminates barriers</strong> — OpEx model unlocking SME adoption</li>
+            <li><strong>Cobots growing 28% CAGR</strong> — the democratization of automation</li>
+            <li><strong>Asia = 74%</strong> of all installations, China alone = 54%</li>
+            <li><strong>4.66M robots</strong> operational worldwide (+9% YoY)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Funding -->
+  <section class="section" id="funding">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">03 — Capital & Players</span>
+        <h2>Where the <span class="gradient-text">$27.6 Billion</span> Is Going</h2>
+        <p class="section-subtitle">Capital is highly concentrated in mega-rounds. The intelligence layer commands the highest multiples.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="grid-3" id="company-cards" data-aos="fade-up" data-aos-delay="100"></div>
+      <h3 style="margin: 48px 0 24px; text-align: center;" data-aos="fade-up">Top VC Firms Betting on Robotics</h3>
+      <div class="grid-3" id="vc-cards" data-aos="fade-up" data-aos-delay="100"></div>
+      <div class="glass-card" style="margin-top: 32px; text-align: center; padding: 24px;" data-aos="fade-up">
+        <p style="color: var(--text-secondary);">
+          <strong style="color: var(--accent-yellow);">SoftBank acquired ABB Robotics for $5.375B</strong> (Oct 2025) —
+          building the Physical AI ecosystem by combining industrial hardware with Skild's universal robot brain.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: India -->
+  <section class="section" id="india" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">04 — The India Opportunity</span>
+        <h2>A <span class="gradient-text">40x Density Gap</span> Is a Greenfield</h2>
+        <p class="section-subtitle">India's robot density of 30 vs South Korea's 1,220 isn't a weakness — it's the single biggest structural argument for robotics in India.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="grid-2" data-aos="fade-up" data-aos-delay="100">
+        <div class="glass-card">
+          <h3 style="margin-bottom: 20px;">Robot Density (per 10K manufacturing workers)</h3>
+          <div class="density-bar-container" id="density-bars"></div>
+          <div class="density-highlight">
+            <h4>India's Gap = India's Opportunity</h4>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">
+              <strong>4.4x</strong> below global average •
+              <strong>5.5x</strong> below China •
+              <strong>40x</strong> below South Korea
+            </p>
+          </div>
+        </div>
+        <div>
+          <div class="glass-card" style="margin-bottom: 24px;">
+            <h3 style="margin-bottom: 12px;">Structural Advantages</h3>
+            <ul class="vertical-list">
+              <li>PLI scheme driving electronics/semiconductor factory buildout</li>
+              <li>Domestic robots at $12K–$18K vs $40K+ imports</li>
+              <li>DST grants for indigenous hardware development</li>
+              <li>Defense budget ₹7.85L Cr (FY2026, +9.5%)</li>
+              <li>ARTPARK @ IISc — startup incubation & R&D bridge</li>
+              <li>Young, tech-savvy workforce ready for upskilling</li>
+            </ul>
+          </div>
+          <div class="glass-card">
+            <h3 style="margin-bottom: 12px;">Structural Challenges</h3>
+            <ul class="vertical-list">
+              <li>~60% of robot cost = imported components (China dependent)</li>
+              <li>After-sales service is brutal across Tier 2/3 cities</li>
+              <li>MSMEs price-shop aggressively — ROI must be obvious</li>
+              <li>Skills gap in mechatronics and system integration</li>
+              <li>Long enterprise sales cycles (6–18 months)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <h3 style="margin: 48px 0 24px; text-align: center;" data-aos="fade-up">India Robotics Ecosystem</h3>
+      <div class="grid-3" id="india-startups" data-aos="fade-up" data-aos-delay="100"></div>
+    </div>
+  </section>
+
+  <!-- Section: Verticals -->
+  <section class="section" id="verticals">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">05 — Vertical Deep Dive</span>
+        <h2>Where to <span class="gradient-text">Plant Your Flag</span></h2>
+        <p class="section-subtitle">8 verticals analyzed by market size, capital needs, moat potential, and India fit.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="vertical-tabs" id="vertical-tabs" data-aos="fade-up"></div>
+      <div id="vertical-contents" data-aos="fade-up" data-aos-delay="100"></div>
+    </div>
+  </section>
+
+  <!-- Section: Moats & Failures -->
+  <section class="section" id="moats" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">06 — Competitive Intelligence</span>
+        <h2>Moats, <span class="gradient-text">Traps & Lessons</span></h2>
+        <p class="section-subtitle">What's actually defensible vs what kills robotics startups.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="grid-2" data-aos="fade-up" data-aos-delay="100">
+        <div>
+          <h3 style="margin-bottom: 20px;">Defensible Moats</h3>
+          <div id="moat-cards"></div>
+        </div>
+        <div>
+          <h3 style="margin-bottom: 20px;">How Robotics Startups Die</h3>
+          <div id="failure-cards"></div>
+          <div class="glass-card" style="margin-top: 16px;">
+            <h4 style="margin-bottom: 12px; color: var(--accent-green);">China Competition Context</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Chinese companies account for <strong style="color: var(--accent-red);">80–90%</strong> of global humanoid shipments</p>
+            <div class="comparison-grid" id="china-comparison"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Case Studies -->
+  <section class="section" id="cases">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">07 — Case Studies</span>
+        <h2>How <span class="gradient-text">Winners Won</span></h2>
+        <p class="section-subtitle">Three companies. Three different strategies. One pattern: solve integration, not just sell a robot.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="grid-3" id="case-study-cards" data-aos="fade-up" data-aos-delay="100"></div>
+    </div>
+  </section>
+
+  <!-- Section: Humanoid Timeline -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">08 — Humanoid Roadmap</span>
+        <h2>When Humanoids <span class="gradient-text">Go Mass Market</span></h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="grid-2" data-aos="fade-up" data-aos-delay="100">
+        <div class="timeline" id="humanoid-timeline"></div>
+        <div class="glass-card">
+          <h3 style="margin-bottom: 16px;">The Honest Take</h3>
+          <ul class="vertical-list">
+            <li>Consumer humanoids are a post-$50M Series B game</li>
+            <li>Industrial deployments are where revenue lives today</li>
+            <li>China dominates volume but faces customer satisfaction gap</li>
+            <li>Market shakeout: 150+ companies → consolidation inevitable</li>
+            <li>The winning move: sell to factories now, dream about homes later</li>
+          </ul>
+          <div style="margin-top: 20px; padding: 16px; background: rgba(0,212,255,0.05); border-radius: var(--radius-sm);">
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">
+              <strong style="color: var(--accent-cyan);">Key Prediction:</strong> By 2030, capable humanoids will cost $17K–$37K.
+              Cumulative installations: 100K+ units by 2027.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Playbook -->
+  <section class="section" id="playbook">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">09 — The Playbook</span>
+        <h2>Your <span class="gradient-text">6–12 Month</span> Action Plan</h2>
+        <p class="section-subtitle">Walk into the next venture with a prototype, a thesis, and customer conversations — not just interest.</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="grid-3" id="action-cards" data-aos="fade-up" data-aos-delay="100"></div>
+      <div class="glass-card" style="margin-top: 32px; text-align: center; padding: 32px;" data-aos="fade-up" data-aos-delay="200">
+        <h3 style="margin-bottom: 12px;">The Strategic Framework</h3>
+        <p style="color: var(--text-secondary); max-width: 700px; margin: 0 auto; font-size: 1rem; line-height: 1.8;">
+          <strong style="color: var(--accent-cyan);">If capital-constrained:</strong> Start with Picks & Shovels (software tools for the robotics industry). Lowest capex, rides the wave.<br><br>
+          <strong style="color: var(--accent-green);">If building a venture:</strong> Pick ONE industrial vertical. Use commodity arms + build vertical perception stack + capture deployment data. That's the playbook.<br><br>
+          <strong style="color: var(--accent-purple);">The moat formula:</strong> Narrow vertical × Commodity hardware × Proprietary AI × Fleet data flywheel × Workflow lock-in = Defensible.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Resources -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">10 — Resources</span>
+        <h2>Go <span class="gradient-text">Deeper</span></h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="grid-3" data-aos="fade-up" data-aos-delay="100">
+        <div class="glass-card">
+          <h4 style="margin-bottom: 12px;">📄 Key Papers</h4>
+          <ul class="vertical-list">
+            <li>π0, π0.5, π0.7 (Physical Intelligence)</li>
+            <li>RT-2 (Google DeepMind)</li>
+            <li>GR00T N1 (NVIDIA)</li>
+            <li>Open X-Embodiment dataset</li>
+            <li>GEN-0/GEN-1 (Generalist AI)</li>
+          </ul>
+        </div>
+        <div class="glass-card">
+          <h4 style="margin-bottom: 12px;">👤 People to Follow</h4>
+          <ul class="vertical-list">
+            <li>Chelsea Finn — Stanford / Physical Intelligence</li>
+            <li>Sergey Levine — UC Berkeley / Physical Intelligence</li>
+            <li>Karol Hausman — Google DeepMind</li>
+            <li>Pieter Abbeel — UC Berkeley / Covariant</li>
+            <li>Fei-Fei Li — Stanford (Spatial Intelligence)</li>
+            <li>Jim Fan — NVIDIA (GR00T)</li>
+          </ul>
+        </div>
+        <div class="glass-card">
+          <h4 style="margin-bottom: 12px;">🔧 Getting Started</h4>
+          <ul class="vertical-list">
+            <li>Buy SO-100/101 arm (~$200)</li>
+            <li>Install LeRobot: <code style="color: var(--accent-cyan);">pip install lerobot</code></li>
+            <li>Run SmolVLA (450M params, consumer HW)</li>
+            <li>Fine-tune π0 on your tasks</li>
+            <li>Conferences: CoRL, RSS, ICRA, NeurIPS</li>
+            <li>Connect with ARTPARK @ IISc</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#hero">Top</a>
+        <a href="#shift">Tech</a>
+        <a href="#market">Market</a>
+        <a href="#india">India</a>
+        <a href="#verticals">Verticals</a>
+        <a href="#playbook">Playbook</a>
+      </div>
+      <p>Built with conviction. Data sourced from IFR, PitchBook, Tracxn, and primary research. May 2026.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
