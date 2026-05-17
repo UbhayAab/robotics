@@ -1,4 +1,4 @@
-// lib.jsx — shared hooks + atoms. Exports to window for cross-file sharing.
+// lib.jsx - shared hooks + atoms. Exports to window for cross-file sharing.
 
 const { useState, useEffect, useRef, useMemo, useCallback, useLayoutEffect } = React;
 
@@ -152,7 +152,7 @@ function toYouTubeEmbed(url) {
   }
 }
 
-/* Slot — labeled placeholder OR real embed when url is provided */
+/* Slot - labeled placeholder OR real embed when url is provided */
 function Slot({ kind = 'video', label, source, url, aspect = '16/9', children, height, style }) {
   const embedUrl = kind === 'video' && url ? toYouTubeEmbed(url) : null;
   const isArticle = kind === 'article' && url;
@@ -237,7 +237,7 @@ function Pull({ children, attrib }) {
       <div className="serif" style={{ fontSize: 28, lineHeight: 1.25, letterSpacing: '-0.015em' }}>
         “{children}”
       </div>
-      {attrib && <div className="meta" style={{ marginTop: 12 }}>— {attrib}</div>}
+      {attrib && <div className="meta" style={{ marginTop: 12 }}>- {attrib}</div>}
     </Reveal>
   );
 }
@@ -526,10 +526,212 @@ function CompactStats({ items }) {
   );
 }
 
+/* ---------- DetailModal: centered popover with rich content ---------- */
+function DetailModal({ open, onClose, data }) {
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [open, onClose]);
+
+  if (!open || !data) return null;
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 1000,
+        background: 'rgba(0,0,0,0.55)',
+        display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
+        padding: '40px 16px', overflow: 'auto',
+        backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)'
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          background: 'var(--paper)',
+          maxWidth: 900, width: '100%',
+          border: '1px solid var(--rule)',
+          borderRadius: 0,
+          position: 'relative',
+          boxShadow: '0 24px 60px rgba(0,0,0,0.3)'
+        }}
+      >
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          aria-label="Close"
+          style={{
+            position: 'absolute', top: 14, right: 14, zIndex: 2,
+            background: 'var(--ink)', color: 'var(--bg)',
+            border: 0, width: 32, height: 32, fontSize: 18,
+            cursor: 'pointer', fontFamily: 'var(--f-mono)'
+          }}
+        >×</button>
+
+        {/* Header */}
+        <div style={{ padding: '32px 36px 20px', borderBottom: '1px solid var(--rule)' }}>
+          {data.kind && <div className="kicker" style={{ color: 'var(--accent)', marginBottom: 6 }}>{data.kind}</div>}
+          <div className="serif" style={{ fontSize: 32, lineHeight: 1.15, letterSpacing: '-0.015em', color: 'var(--ink)', marginBottom: 8 }}>
+            {data.title}
+          </div>
+          {data.subtitle && (
+            <div style={{ fontSize: 14, color: 'var(--ink-mid)', marginBottom: 6 }}>{data.subtitle}</div>
+          )}
+          {data.meta && (
+            <div className="meta" style={{ marginTop: 8, color: 'var(--ink-low)' }}>{data.meta}</div>
+          )}
+        </div>
+
+        {/* Stats row */}
+        {data.stats && data.stats.length > 0 && (
+          <div style={{ display: 'grid', gridTemplateColumns: `repeat(${data.stats.length}, 1fr)`, borderBottom: '1px solid var(--rule)' }}>
+            {data.stats.map((s, i) => (
+              <div key={i} style={{ padding: '16px 20px', borderRight: i < data.stats.length - 1 ? '1px solid var(--rule)' : 'none' }}>
+                <div className="meta" style={{ marginBottom: 4, color: 'var(--ink-low)' }}>{s.label}</div>
+                <div style={{ fontFamily: 'var(--f-mono)', fontSize: 18, color: 'var(--accent)', fontWeight: 600 }}>{s.value}</div>
+                {s.sub && <div style={{ fontSize: 11, color: 'var(--ink-low)', marginTop: 2 }}>{s.sub}</div>}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Body */}
+        <div style={{ padding: '24px 36px 32px' }}>
+          {data.body && (
+            <div style={{ fontSize: 14.5, lineHeight: 1.65, color: 'var(--ink-mid)', marginBottom: 18 }}>
+              {typeof data.body === 'string'
+                ? data.body.split('\n').filter(p => p.trim()).map((p, i) => <p key={i} style={{ margin: '0 0 10px' }}>{p}</p>)
+                : data.body}
+            </div>
+          )}
+
+          {/* Products / pricing */}
+          {data.products && data.products.length > 0 && (
+            <div style={{ marginBottom: 22 }}>
+              <div className="kicker" style={{ color: 'var(--accent)', marginBottom: 10 }}>Products + pricing</div>
+              <div style={{ display: 'grid', gap: 8 }}>
+                {data.products.map((p, i) => (
+                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 12, padding: '10px 12px', background: 'var(--bg-alt)', border: '1px solid var(--rule)' }}>
+                    <div>
+                      <div style={{ fontSize: 13.5, color: 'var(--ink)', fontWeight: 500 }}>{p.name}</div>
+                      {p.spec && <div style={{ fontSize: 12, color: 'var(--ink-mid)', marginTop: 3 }}>{p.spec}</div>}
+                    </div>
+                    {p.price && (
+                      <div style={{ fontFamily: 'var(--f-mono)', fontSize: 13, color: 'var(--accent)', fontWeight: 600, alignSelf: 'center' }}>{p.price}</div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Customers */}
+          {data.customers && (
+            <div style={{ marginBottom: 22 }}>
+              <div className="kicker" style={{ color: 'var(--accent)', marginBottom: 8 }}>Key customers</div>
+              <div style={{ fontSize: 13.5, color: 'var(--ink-mid)', lineHeight: 1.55 }}>{data.customers}</div>
+            </div>
+          )}
+
+          {/* Videos */}
+          {data.videos && data.videos.length > 0 && (
+            <div style={{ marginBottom: 22 }}>
+              <div className="kicker" style={{ color: 'var(--accent)', marginBottom: 10 }}>Watch</div>
+              <div style={{ display: 'grid', gap: 14 }}>
+                {data.videos.map((v, i) => (
+                  <div key={i}>
+                    <Slot kind="video" url={v.url} label={v.title} aspect="16/9"/>
+                    <div style={{ fontSize: 12.5, color: 'var(--ink-mid)', marginTop: 6, lineHeight: 1.5 }}>
+                      <span style={{ color: 'var(--accent)', fontFamily: 'var(--f-mono)', marginRight: 8 }}>{String(i+1).padStart(2,'0')}</span>
+                      {v.title}
+                      {v.note && <span style={{ display: 'block', fontSize: 11.5, color: 'var(--ink-low)', marginTop: 2 }}>{v.note}</span>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Links */}
+          {data.links && data.links.length > 0 && (
+            <div style={{ marginBottom: 14 }}>
+              <div className="kicker" style={{ color: 'var(--accent)', marginBottom: 10 }}>Links</div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                {data.links.map((l, i) => (
+                  <a
+                    key={i}
+                    href={l.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      fontFamily: 'var(--f-mono)', fontSize: 11.5,
+                      padding: '6px 12px', border: '1px solid var(--accent)',
+                      color: 'var(--accent)', textDecoration: 'none',
+                      letterSpacing: '.08em', textTransform: 'uppercase'
+                    }}
+                  >
+                    {l.label} ↗
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Sources */}
+          {data.sources && (
+            <div style={{ marginTop: 18, paddingTop: 14, borderTop: '1px dashed var(--rule)', fontSize: 11.5, color: 'var(--ink-low)', fontFamily: 'var(--f-mono)' }}>
+              Sources: {data.sources}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- ClickableCard: any card that opens a modal on click ---------- */
+function ClickableCard({ data, children, style }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <div
+        onClick={() => setOpen(true)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setOpen(true); }}
+        style={{
+          cursor: 'pointer', position: 'relative',
+          transition: 'border-color .18s, transform .18s',
+          ...(style || {})
+        }}
+        onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--accent)'; }}
+        onMouseLeave={(e) => { e.currentTarget.style.borderColor = ''; }}
+      >
+        {children}
+        <div style={{
+          position: 'absolute', top: 10, right: 10,
+          fontFamily: 'var(--f-mono)', fontSize: 9.5,
+          color: 'var(--accent)', letterSpacing: '.1em',
+          opacity: 0.7, pointerEvents: 'none'
+        }}>CLICK ↗</div>
+      </div>
+      <DetailModal open={open} onClose={() => setOpen(false)} data={data}/>
+    </>
+  );
+}
+
 Object.assign(window, {
   useInView, useScrollProgress, useCountUp,
   fmtUsd, fmtNum, fmtPct,
   Kicker, Meta, Chip, Counter, Reveal,
   SectionTag, Slot, Kpi, Gloss, Pull, Marquee, TableOfContents, VideoReel,
   VideoStudy, FinancialsTable, BOMBreakdown, WedgeRanker, ColdCallScript, DiscoveryFramework, CompactStats,
+  DetailModal, ClickableCard,
 });

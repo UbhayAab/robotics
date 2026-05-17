@@ -1,4 +1,4 @@
-// charts.jsx — SVG chart primitives. All draw-in animated on scroll.
+// charts.jsx - SVG chart primitives. All draw-in animated on scroll.
 
 const { useState: useStateC, useEffect: useEffectC, useRef: useRefC, useMemo: useMemoC } = React;
 

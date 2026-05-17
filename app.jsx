@@ -1,4 +1,4 @@
-// app.jsx — top-level composition
+// app.jsx - top-level composition
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "dark": false,
