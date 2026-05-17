@@ -58,7 +58,52 @@ function S01_Hook({ motion }) {
           </Reveal>
         </div>
 
-        <div style={{ height: 90 }}></div>
+        <div style={{ height: 40 }}></div>
+
+        {/* TL;DR – the 30-second version, with jump links */}
+        <Reveal delay={650}>
+          <div className="tldr" style={{
+            border: '1px solid var(--rule)',
+            borderLeft: '3px solid var(--accent)',
+            background: 'var(--paper)',
+            padding: '22px 26px',
+            display: 'grid', gridTemplateColumns: '120px 1fr', gap: 24
+          }}>
+            <div>
+              <div className="kicker" style={{ color: 'var(--accent)' }}>TL;DR</div>
+              <div className="meta" style={{ marginTop: 6, color: 'var(--ink-low)' }}>30-second read</div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <p style={{ fontSize: 16.5, lineHeight: 1.55, color: 'var(--ink)', margin: 0 }}>
+                Enter robotics via the <a href="#manufacturing" style={{ color: 'var(--accent)', textDecoration: 'underline', textUnderlineOffset: 3 }}>boring, profitable industrial wedge</a> -
+                a Bangalore-based cobot + AMR integrator selling RaaS to PLI manufacturers.
+                Use the cashflow + customer footprint to build expertise, supplier depth, and a data flywheel.
+                Then, around month 18, revisit <a href="#consumer" style={{ color: 'var(--accent)', textDecoration: 'underline', textUnderlineOffset: 3 }}>consumer wedges</a> and
+                graduate to <a href="#humanoids" style={{ color: 'var(--accent)', textDecoration: 'underline', textUnderlineOffset: 3 }}>humanoids</a> only after the unit economics, manufacturing intimacy, and OEM relationships are real.
+              </p>
+              <div className="tldr-jumps" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {[
+                  ['Why now', '#why-now'],
+                  ['Entry wedge · industrial', '#manufacturing'],
+                  ['Defer · consumer', '#consumer'],
+                  ['Defer · humanoids', '#humanoids'],
+                  ['India · the asymmetry', '#india'],
+                  ['Unit economics', '#data'],
+                  ['The bet (10-yr)', '#bet']
+                ].map(([label, href]) => (
+                  <a key={href} href={href} className="chip" style={{
+                    cursor: 'pointer',
+                    borderColor: 'var(--accent)',
+                    color: 'var(--accent)',
+                    textDecoration: 'none'
+                  }}>{label} →</a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        <div style={{ height: 56 }}></div>
 
         {/* Big stat strip */}
         <Reveal delay={400}>
@@ -548,8 +593,8 @@ function S03_Consumer({ motion }) {
         {/* Video study: what global incumbents look like */}
         <Reveal>
           <VideoStudy
-            url="https://www.youtube.com/watch?v=Q39DjMfO9NA"
-            title="Why Roborock is dominating robot vacuums - Acquired adjacent breakdown"
+            url="https://www.youtube.com/watch?v=RXKR7-McdF0"
+            title="Roborock Saros 10R - why it's the #1 robot vacuum right now"
             channel="YouTube · Vacuum Wars"
             summary="Roborock's playbook is not a product story, it is a manufacturing-iteration story: 1,043 R&D engineers (40% of staff), 6-month hardware cycle, in-house mechanical + software co-iteration. iRobot outsourced to Jabil and lost the BOM-iteration speed game. Same lesson applies to anyone trying to enter consumer robotics from India - without local manufacturing intimacy, you ship a slow product."
             takeaways={[
@@ -567,7 +612,7 @@ function S03_Consumer({ motion }) {
             title="Watch · consumer robotics in the wild"
             sub="6 videos · so we know exactly what we revisit at month 18"
             items={[
-              { label: 'Roborock Saros 10R - auto-empty + mop wash demo', source: 'YouTube · Vacuum Wars', url: 'https://www.youtube.com/watch?v=ksaSXJjW7nA' },
+              { label: 'Roborock Saros 10 - The Best Robovac of 2025', source: 'YouTube · Vacuum Wars', url: 'https://www.youtube.com/watch?v=_3YQ95cTKbk' },
               { label: 'Mammotion LUBA 2 AWD - wire-free RTK lawn robot', source: 'YouTube · EasyLawnMowing', url: 'https://www.youtube.com/watch?v=Ivw9qUdSK3g' },
               { label: 'Whisker Litter-Robot 4 - the cat-litter moat', source: 'YouTube · Whisker', url: 'https://www.youtube.com/watch?v=XSC4_8myD2k' },
               { label: 'Aiper Scuba S1 Pro - pool robot taking Maytronics share', source: 'YouTube · Aiper', url: 'https://www.youtube.com/watch?v=S96qnUWypwo' },
@@ -829,7 +874,7 @@ function S04_Manufacturing({ motion }) {
           <div className="col-12">
             <div style={{ gridColumn: '1 / span 7' }}>
               <VideoStudy
-                url="https://www.youtube.com/watch?v=YeY7QvSGdEs"
+                url="https://www.youtube.com/watch?v=gzAbYzEhVvM"
                 title="Dynamo - Autonomous Mobile Robot · Material Movement"
                 channel="Addverb Technologies"
                 summary="The Dynamo is Addverb's flagship AMR - 2,500 kg payload, 2 m/s operating speed, 8-hour runtime on an 8-minute fast charge, pivot-turning for tight aisles. The architecture uses LiDAR-based natural navigation and SLAM, so warehouses don't need magnetic tape, QR codes, or fixed infrastructure. This is what 'software-defined hardware' looks like in B2B logistics: the hardware is buildable in 4 quarters; the moat is the orchestration layer that talks to a customer's WMS and ERP."
@@ -982,8 +1027,8 @@ function S04_Manufacturing({ motion }) {
           <div className="col-3">
             <div>
               <VideoStudy
-                url="https://www.youtube.com/watch?v=NCAdgsj_Qrk"
-                title="Unbox Robotics - vertical swarm sortation"
+                url="https://www.youtube.com/watch?v=RgCHZsoBJwI"
+                title="Unbox Robotics - vertical robotic sortation for omnichannel fulfilment"
                 channel="Unbox Robotics"
                 summary="Unbox attacks the most expensive operational variable in urban fulfillment: floor space. Traditional conveyor sortation is rigid and capex-heavy. UnboxSort fleets vertically sort parcels using swarm intelligence - 50-70% floor-space reduction. Deploys 10× faster than conveyors; can start with a 20-robot fleet and scale by adding units without disrupting operations."
                 takeaways={[
@@ -994,9 +1039,9 @@ function S04_Manufacturing({ motion }) {
             </div>
             <div>
               <VideoStudy
-                url="https://www.youtube.com/watch?v=lpsbBCMexGI"
-                title="Orangewood Labs - Abhinav Das on democratizing robots"
-                channel="Y Combinator"
+                url="https://www.youtube.com/watch?v=56Ip4CBfX-E"
+                title="RoboGPT demo by Orangewood Labs - YC-backed cobot, voice-controlled"
+                channel="Orangewood Labs · YC"
                 summary="Orangewood is YC-backed and democratizes cobots for SMEs that traditionally got priced out by six-figure integration fees. The innovation is RoboGPT - natural-language interface where an operator says 'pick the blue cap' instead of writing G-code. On-device vision + motion AI + a simple web dashboard. Robots-as-a-Service pricing model for immediate time-to-value."
                 takeaways={[
                   'YC-backed (the only YC India robotics co with a NLP-first interface)',

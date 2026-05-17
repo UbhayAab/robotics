@@ -783,7 +783,7 @@ function S09_India({ motion }) {
             title="Watch · ARTPARK and the India robotics ecosystem"
             sub="5 videos · government push, ROSCon, ecosystem (no overlap with above reel)"
             items={[
-              { label: 'ARTPARK @ IISc - Innovation Factory for Next-gen Robotics & AI', source: 'YouTube · ARTPARK', url: 'https://www.youtube.com/watch?v=slOOufHnq-Y', note: 'ARTPARK official mission video.' },
+              { label: 'Explained: ARTPARK launches robotics + AI lab at IISc', source: 'YouTube · NewsX', url: 'https://www.youtube.com/watch?v=TYzXNTIms14', note: 'ARTPARK launch coverage at IISc.' },
               { label: 'Bharadwaj Amrutur ROSCon India 2024 keynote', source: 'YouTube · ROSCon India', url: 'https://www.youtube.com/watch?v=tXrCAo12qi4', note: 'Infrastructure-aided autonomy + wireless edge compute for robot fleets in India.' },
               { label: 'Inside IISc\'s ARTPARK - Pioneering Robotics & Autonomous Systems', source: 'YouTube · Global AI Conclave', url: 'https://www.youtube.com/watch?v=0QKGSe2IMCM', note: 'Survey of ARTPARK leadership + portfolio startups.' },
               { label: 'AI and Robotics for Every Indian - Tech for Good', source: 'YouTube · IISc', url: 'https://www.youtube.com/watch?v=PLyz_Ten44U', note: 'IISc and ARTPARK push for socially-relevant robotics.' },
@@ -1432,7 +1432,7 @@ const PEOPLE_DETAILS = {
     customers: 'Reliance Retail, Unilever, Flipkart, Coca-Cola, PepsiCo, Maersk, J&J, PAR Pharma - 300+ clients',
     videos: [
       { url: 'https://www.youtube.com/watch?v=I6_iM1oi-1s', title: 'Young Turks Reloaded × Addverb - inside Bot Valley factory', note: 'Sangeet Kumar interview on humanoid bet + manufacturing scale.' },
-      { url: 'https://www.youtube.com/watch?v=YeY7QvSGdEs', title: 'Dynamo - Autonomous Mobile Robot · Material Movement' },
+      { url: 'https://www.youtube.com/watch?v=gzAbYzEhVvM', title: 'Dynamo - Autonomous Mobile Robot · Material Movement' },
       { url: 'https://www.youtube.com/watch?v=vJBo_jjp5rA', title: 'India AI Summit - Addverb Trakr quadruped' }
     ],
     links: [

@@ -424,23 +424,23 @@ function BOMBreakdown({ title, items, total, unit = '$', footnote }) {
         ))}
       </div>
       {/* Line items */}
-      <div style={{ marginTop: 14, display: 'grid', gap: 6 }}>
+      <div className="bom-lines" style={{ marginTop: 14, display: 'grid', gap: 6 }}>
         {items.map((it, i) => (
-          <div key={i} style={{ display: 'grid', gridTemplateColumns: '14px 1fr auto auto', gap: 12, alignItems: 'baseline', fontSize: 13 }}>
+          <div key={i} className="bom-row" style={{ display: 'grid', gridTemplateColumns: '14px minmax(0,1fr) auto auto', gap: 12, alignItems: 'baseline', fontSize: 13 }}>
             <div style={{ width: 10, height: 10, borderRadius: 2, background: it.color || `hsl(${(i * 47) % 360}, 35%, ${50 + (i % 3) * 8}%)` }}></div>
-            <div style={{ color: 'var(--ink)' }}>{it.label}<span className="meta" style={{ marginLeft: 8, color: 'var(--ink-low)' }}>{it.note}</span></div>
-            <div style={{ fontFamily: 'var(--f-mono)', color: 'var(--ink-mid)' }}>{unit}{it.cost.toLocaleString()}</div>
-            <div style={{ fontFamily: 'var(--f-mono)', color: 'var(--ink-low)', textAlign: 'right', minWidth: 50 }}>
+            <div style={{ color: 'var(--ink)', minWidth: 0 }}>{it.label}<span className="meta bom-note" style={{ marginLeft: 8, color: 'var(--ink-low)' }}>{it.note}</span></div>
+            <div className="bom-cost" style={{ fontFamily: 'var(--f-mono)', color: 'var(--ink-mid)', whiteSpace: 'nowrap' }}>{unit}{it.cost.toLocaleString()}</div>
+            <div className="bom-pct" style={{ fontFamily: 'var(--f-mono)', color: 'var(--ink-low)', textAlign: 'right', minWidth: 50, whiteSpace: 'nowrap' }}>
               {(it.cost / sum * 100).toFixed(1)}%
             </div>
           </div>
         ))}
-        <div style={{ borderTop: '1px solid var(--ink)', marginTop: 6, paddingTop: 8,
-                      display: 'grid', gridTemplateColumns: '14px 1fr auto auto', gap: 12, alignItems: 'baseline', fontSize: 13 }}>
+        <div className="bom-row" style={{ borderTop: '1px solid var(--ink)', marginTop: 6, paddingTop: 8,
+                      display: 'grid', gridTemplateColumns: '14px minmax(0,1fr) auto auto', gap: 12, alignItems: 'baseline', fontSize: 13 }}>
           <div></div>
           <div style={{ color: 'var(--ink)', fontWeight: 600 }}>Total</div>
-          <div style={{ fontFamily: 'var(--f-mono)', color: 'var(--accent)', fontWeight: 600 }}>{unit}{(total || sum).toLocaleString()}</div>
-          <div style={{ fontFamily: 'var(--f-mono)', color: 'var(--ink-low)', textAlign: 'right', minWidth: 50 }}>100%</div>
+          <div className="bom-cost" style={{ fontFamily: 'var(--f-mono)', color: 'var(--accent)', fontWeight: 600, whiteSpace: 'nowrap' }}>{unit}{(total || sum).toLocaleString()}</div>
+          <div className="bom-pct" style={{ fontFamily: 'var(--f-mono)', color: 'var(--ink-low)', textAlign: 'right', minWidth: 50, whiteSpace: 'nowrap' }}>100%</div>
         </div>
       </div>
       {footnote && <div className="meta" style={{ marginTop: 12, fontStyle: 'italic' }}>{footnote}</div>}

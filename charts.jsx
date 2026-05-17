@@ -43,12 +43,13 @@ function Sparkline({ data, width = 120, height = 32, color = 'currentColor', mot
   const visiblePts = pts.slice(0, Math.max(2, Math.floor(pts.length * p)));
   const visiblePath = visiblePts.map((pt, i) => (i === 0 ? `M${pt[0]},${pt[1]}` : `L${pt[0]},${pt[1]}`)).join(' ');
   return (
-    <svg ref={ref} width={width} height={height} style={{ display: 'block', overflow: 'visible' }}>
+    <svg ref={ref} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none"
+         style={{ display: 'block', width: '100%', maxWidth: width, height: height, overflow: 'visible' }}>
       {fill && p > 0.5 && (
         <path d={`${visiblePath} L${visiblePts[visiblePts.length-1][0]},${height} L${visiblePts[0][0]},${height} Z`}
               fill={color} opacity="0.12" />
       )}
-      <path d={visiblePath} fill="none" stroke={color} strokeWidth="1.4" />
+      <path d={visiblePath} fill="none" stroke={color} strokeWidth="1.4" vectorEffect="non-scaling-stroke" />
       {p > 0.95 && (
         <circle cx={pts[pts.length-1][0]} cy={pts[pts.length-1][1]} r="2.4" fill={color} />
       )}
@@ -60,16 +61,14 @@ function Sparkline({ data, width = 120, height = 32, color = 'currentColor', mot
 function BarChart({ data, max, height, barH = 22, gap = 4, color = 'var(--ink)', motion = 1, format = (v) => v }) {
   const [ref, p] = useDrawIn(motion);
   const m = max || Math.max(...data.map(d => d.value));
-  const labelW = 132;
-  const valueW = 78;
   return (
-    <div ref={ref} style={{ display: 'flex', flexDirection: 'column', gap, fontFamily: 'var(--f-mono)', fontSize: 11 }}>
+    <div ref={ref} className="bar-chart" style={{ display: 'flex', flexDirection: 'column', gap, fontFamily: 'var(--f-mono)', fontSize: 11 }}>
       {data.map((d, i) => {
         const w = (d.value / m) * 100 * p;
         return (
-          <div key={i} style={{ display: 'grid', gridTemplateColumns: `${labelW}px 1fr ${valueW}px`, alignItems: 'center', gap: 10 }}>
-            <div style={{ color: 'var(--ink-mid)', textTransform: 'uppercase', letterSpacing: '.08em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.label}</div>
-            <div style={{ background: 'var(--bg-deep)', height: barH, position: 'relative', overflow: 'hidden' }}>
+          <div key={i} className="bar-row" style={{ display: 'grid', gridTemplateColumns: 'minmax(80px, 132px) minmax(0,1fr) minmax(52px, 78px)', alignItems: 'center', gap: 10 }}>
+            <div className="bar-label" style={{ color: 'var(--ink-mid)', textTransform: 'uppercase', letterSpacing: '.08em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.label}</div>
+            <div style={{ background: 'var(--bg-deep)', height: barH, position: 'relative', overflow: 'hidden', minWidth: 0 }}>
               <div style={{ position: 'absolute', inset: 0, width: `${w}%`, background: d.color || color, transition: 'width .4s ease-out' }}></div>
               {d.note && <div style={{ position: 'absolute', right: 6, top: '50%', transform: 'translateY(-50%)', color: 'var(--bg)', mixBlendMode: 'difference', fontSize: 10, letterSpacing: '.08em' }}>{d.note}</div>}
             </div>
